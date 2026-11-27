@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>lean-geometry-pde: the sphere, in 3D</title>
+<style>
+  :root { color-scheme: light dark; }
+  body { margin: 0; font-family: system-ui, -apple-system, sans-serif; background: #0f1220; color: #e8eaf2; }
+  #app { display: flex; flex-wrap: wrap; min-height: 100vh; }
+  #view { flex: 1 1 560px; min-height: 60vh; position: relative; }
+  #view canvas { display: block; width: 100%; height: 100%; }
+  #hint { position: absolute; left: 12px; bottom: 10px; font-size: 13px; color: #aab; background: rgba(10,12,24,.6); padding: 6px 10px; border-radius: 8px; }
+  #panel { flex: 1 1 360px; padding: 28px 26px 40px; background: #171a2c; }
+  h1 { font-size: 26px; margin: 0 0 4px; }
+  .sub { color: #aab; margin: 0 0 22px; font-size: 15px; }
+  h2 { font-size: 16px; margin: 26px 0 8px; color: #9fc3ff; text-transform: uppercase; letter-spacing: .06em; }
+  .num { font-size: 17px; line-height: 1.9; }
+  .num b { color: #ffd166; font-weight: 600; }
+  .num .red { color: #ff7b7b; }
+  .pipe { list-style: none; padding: 0; margin: 0; }
+  .pipe li { border-left: 3px solid #3d6fb4; padding: 2px 0 12px 14px; line-height: 1.5; }
+  .pipe li:last-child { border-left-color: #d62728; }
+  .pipe code { background: #232842; padding: 1px 6px; border-radius: 5px; font-size: 14px; }
+  .pipe .what { color: #c6cbdd; font-size: 14.5px; }
+  .check { background: #1d2b1d; border: 1px solid #3a6b3a; border-radius: 10px; padding: 12px 14px; font-size: 14.5px; line-height: 1.6; }
+  a { color: #9fc3ff; }
+  .fine { color: #8b90a5; font-size: 13.5px; line-height: 1.6; }
+  .row { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 10px; }
+  .btn { display: inline-block; background: #2b3a67; color: #fff; text-decoration: none; padding: 8px 14px; border-radius: 8px; font-size: 14px; }
+  .btn:hover { background: #3a4f8a; }
+</style>
+<script type="importmap">
+{ "imports": {
+  "three": "https://unpkg.com/three@0.158.0/build/three.module.js",
+  "three/addons/": "https://unpkg.com/three@0.158.0/examples/jsm/"
+} }
+</script>
+</head>
+<body>
+<div id="app">
+  <div id="view"><div id="hint">Drag to rotate, scroll to zoom. Red circle: θ = π/4.</div></div>
+  <div id="panel">
+    <h1>The unit 2-sphere, in 3D</h1>
+    <p class="sub">What the tool proves, drawn from its own Lean files. Nothing here is a sketch.</p>
+
+    <h2>The numbers, checked in Lean</h2>
+    <div class="num">
+      Metric: <b>g = diag(1, sin²θ)</b><br>
+      Γ<sup>θ</sup><sub>φφ</sub> = <b>−sinθ cosθ</b>,&nbsp; Γ<sup>φ</sup><sub>θφ</sub> = <b>cotθ</b><br>
+      Ricci: <b>Ric = g</b> wherever sinθ ≠ 0<br>
+      Scalar: <b>2</b> at θ = π/4<br>
+      <span class="red">At θ = π/4: Γ<sup>θ</sup><sub>φφ</sub> = −1/2, Γ<sup>φ</sup><sub>θφ</sub> = 1</span>
+    </div>
+
+    <h2>The tool itself: what runs</h2>
+    <ul class="pipe">
+      <li><code>Metric.lean</code><br><span class="what">A metric is a signature and a bilinear form. No instances are registered, so nothing can silently bind the wrong norm.</span></li>
+      <li><code>LeviCivita.lean</code><br><span class="what">Flat constant-metric connection, with coordinate Riemann, Ricci, and scalar definitions.</span></li>
+      <li><code>SphereTestSpherical.lean</code><br><span class="what">Koszul symbols from the metric, proved equal to the standard spherical symbols. Ricci = g, scalar = 2.</span></li>
+      <li><code>GitHub Actions, on every push</code><br><span class="what">Installs Lean 4.36.0, fetches the Mathlib cache, builds the whole project, and fails on any sorry.</span></li>
+    </ul>
+
+    <h2>The deletion check</h2>
+    <div class="check">
+      Delete the ΓΓ sum from the Riemann components and the build fails:
+      R<sup>θ</sup><sub>φθφ</sub> reads 0 = 1/2. The test cannot pass with a
+      curvature pipeline that always returns zero.
+    </div>
+
+    <div class="row">
+      <a class="btn" href="https://github.com/richardsondx/lean-geometry-pde">Repo</a>
+      <a class="btn" href="https://github.com/richardsondx/lean-geometry-pde/blob/main/lean-phase1/PseudoRiemannian/SphereTestSpherical.lean">SphereTestSpherical.lean</a>
+      <a class="btn" href="https://github.com/richardsondx/lean-geometry-pde/actions">CI runs</a>
+    </div>
+
+    <p class="fine" style="margin-top: 22px;">What is not shown: general manifolds, the Einstein equations, Kerr.
+    One chart of one surface, coordinate components only. Lean 4.36.0, Mathlib v4.36.0.
+    Open this file in a browser to rotate the sphere; it needs network access for the Three.js library.</p>
+  </div>
+</div>
+<script type="module">
+import * as THREE from 'three';
+import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+
+const holder = document.getElementById('view');
+const scene = new THREE.Scene();
+scene.background = new THREE.Color(0x0f1220);
+const camera = new THREE.PerspectiveCamera(42, 1, 0.1, 100);
+camera.position.set(2.6, 1.6, 3.2);
+const renderer = new THREE.WebGLRenderer({ antialias: true });
+holder.appendChild(renderer.domElement);
+const controls = new OrbitControls(camera, renderer.domElement);
+controls.enableDamping = true;
+controls.autoRotate = true;
+controls.autoRotateSpeed = 0.8;
+
+const group = new THREE.Group();
+scene.add(group);
+
+// Faint sphere surface.
+const sphere = new THREE.Mesh(
+  new THREE.SphereGeometry(1, 64, 48),
+  new THREE.MeshBasicMaterial({ color: 0x2c3e63, transparent: true, opacity: 0.35 })
+);
+group.add(sphere);
+
+function line(points, color, width) {
+  const geo = new THREE.BufferGeometry().setFromPoints(points);
+  const mat = new THREE.LineBasicMaterial({ color, linewidth: width || 1 });
+  group.add(new THREE.Line(geo, mat));
+}
+function circlePts(theta, n) {
+  const pts = [];
+  for (let i = 0; i <= n; i++) {
+    const phi = 2 * Math.PI * i / n;
+    pts.push(new THREE.Vector3(
+      Math.sin(theta) * Math.cos(phi), Math.cos(theta), Math.sin(theta) * Math.sin(phi)));
+  }
+  return pts;
+}
+function meridianPts(phi, n) {
+  const pts = [];
+  for (let i = 0; i <= n; i++) {
+    const theta = Math.PI * i / n;
+    pts.push(new THREE.Vector3(
+      Math.sin(theta) * Math.cos(phi), Math.cos(theta), Math.sin(theta) * Math.sin(phi)));
+  }
+  return pts;
+}
+const GRID = 0x8a94a6, RED = 0xff5555;
+// Parallels and meridians every 30 degrees.
+for (let k = 1; k < 6; k++) line(circlePts(k * Math.PI / 6, 128), GRID);
+for (let k = 0; k < 12; k++) line(meridianPts(k * Math.PI / 6, 128), GRID);
+// Red circle: theta = pi/4.
+line(circlePts(Math.PI / 4, 128), RED, 2);
+// Checked point (theta = pi/4, phi = 0).
+const dot = new THREE.Mesh(
+  new THREE.SphereGeometry(0.045, 16, 12),
+  new THREE.MeshBasicMaterial({ color: RED }));
+dot.position.set(Math.sin(Math.PI / 4), Math.cos(Math.PI / 4), 0);
+group.add(dot);
+
+function resize() {
+  const w = holder.clientWidth, h = holder.clientHeight;
+  renderer.setSize(w, h);
+  camera.aspect = w / h;
+  camera.updateProjectionMatrix();
+}
+window.addEventListener('resize', resize);
+resize();
+
+function tick() {
+  requestAnimationFrame(tick);
+  controls.update();
+  renderer.render(scene, camera);
+}
+tick();
+</script>
+</body>
+</html>
