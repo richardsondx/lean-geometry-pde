@@ -16,7 +16,7 @@ jobs:
       - name: Install Lean
         uses: leanprover/lean-action@v1
         with:
-          lean-toolchain: lean-phase1/lean-toolchain
+          lake-package-directory: lean-phase1
 
       - name: Fetch Mathlib cache
         working-directory: lean-phase1
