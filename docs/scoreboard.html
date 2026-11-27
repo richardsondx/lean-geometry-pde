@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>lean-geometry-pde scoreboard</title>
+<style>
+  * { box-sizing: border-box; }
+  body { margin: 0; padding: 16px; font-family: -apple-system, "Segoe UI", Roboto, sans-serif; background: var(--hatch-widget-bg, #fff); color: var(--hatch-widget-text, #111); }
+  h1 { font-size: 20px; margin: 0 0 4px; }
+  h2 { font-size: 15px; margin: 22px 0 8px; }
+  p, li { font-size: 14px; line-height: 1.5; }
+  .sub { color: var(--hatch-widget-muted, #555); margin: 0 0 12px; }
+  .big { display: flex; align-items: baseline; gap: 10px; margin: 8px 0 4px; }
+  .big b { font-size: 44px; }
+  .bar { height: 14px; border-radius: 7px; background: var(--hatch-widget-surface-muted, #e8e8e8); overflow: hidden; }
+  .bar i { display: block; height: 100%; background: var(--hatch-widget-accent, #2563eb); border-radius: 7px; }
+  .row { display: flex; align-items: center; gap: 10px; margin: 7px 0; font-size: 14px; }
+  .row .name { width: 170px; flex-shrink: 0; }
+  .row .bar { flex: 1; height: 10px; }
+  .row .pct { width: 44px; text-align: right; font-variant-numeric: tabular-nums; }
+  .pill { display: inline-block; padding: 2px 8px; border-radius: 10px; font-size: 12px; border: 1px solid var(--hatch-widget-border, #ccc); }
+  .done { color: #15803d; border-color: #15803d; }
+  .gap { color: #b45309; border-color: #b45309; }
+  .zero { color: var(--hatch-widget-muted, #555); }
+  .card { border: 1px solid var(--hatch-widget-border, #ddd); border-radius: 12px; padding: 14px; margin: 12px 0; background: var(--hatch-widget-surface, transparent); }
+  .cols { display: flex; gap: 16px; flex-wrap: wrap; }
+  .cols > div { flex: 1; min-width: 220px; }
+  .num { font-size: 26px; font-weight: 700; font-variant-numeric: tabular-nums; }
+  .lbl { font-size: 12px; color: var(--hatch-widget-muted, #555); }
+  .fine { font-size: 12px; color: var(--hatch-widget-muted, #555); }
+  svg text { font-family: -apple-system, "Segoe UI", Roboto, sans-serif; }
+</style>
+</head>
+<body>
+<h1>lean-geometry-pde scoreboard</h1>
+<p class="sub">Goal: build the geometry and PDE layer Mathlib lacks. Updated 27 Nov 2026.</p>
+
+<div class="big"><b>~6%</b><span>done, by effort</span></div>
+<div class="bar"><i style="width:6%"></i></div>
+<p class="fine">Method: each phase weighted by the midpoint of its effort range in the plan (Phase 0: 3 weeks, Phase 1: 12 months, Phase 2: 6, Phase 3: 24, Phase 4: 12, Phase 5 scaffolding: 42, total 96.75 person-months). Done so far: Phase 0 plus about 40% of Phase 1 plus about 5% of Phase 4, about 6.2 of 96.75 months. The share stays near 6% whether you use the low or high ends of the ranges. Correction: I said roughly 10% earlier; recomputing it properly from the plan gives about 6%.</p>
+
+<h2>Per phase</h2>
+<div class="row"><span class="name">Phase 0, audit</span><div class="bar"><i style="width:100%"></i></div><span class="pct">100%</span><span class="pill done">DONE</span></div>
+<div class="row"><span class="name">Signature lock (3, 1)</span><div class="bar"><i style="width:100%"></i></div><span class="pct">100%</span><span class="pill done">DONE</span></div>
+<div class="row"><span class="name">Phase 1, metric + curvature</span><div class="bar"><i style="width:40%"></i></div><span class="pct">~40%</span><span class="pill gap">GAP</span></div>
+<div class="row"><span class="name">Phase 2, Einstein equations</span><div class="bar"><i style="width:0%"></i></div><span class="pct">0%</span><span class="pill zero">not started</span></div>
+<div class="row"><span class="name">Phase 3, Sobolev + PDE</span><div class="bar"><i style="width:0%"></i></div><span class="pct">0%</span><span class="pill zero">not started</span></div>
+<div class="row"><span class="name">Phase 4, Kerr metric</span><div class="bar"><i style="width:5%"></i></div><span class="pct">~5%</span><span class="pill gap">GAP</span></div>
+<div class="row"><span class="name">Phase 5, stability scaffolding</span><div class="bar"><i style="width:0%"></i></div><span class="pct">0%</span><span class="pill zero">not started</span></div>
+
+<h2>Visual proof: what the tool does today</h2>
+<div class="card">
+  <div class="cols">
+    <div>
+      <svg viewBox="0 0 260 220" width="100%" role="img" aria-label="Unit 2-sphere with constant scalar curvature 2">
+        <defs>
+          <radialGradient id="sph" cx="38%" cy="32%" r="75%">
+            <stop offset="0%" stop-color="#fde68a"/>
+            <stop offset="55%" stop-color="#f59e0b"/>
+            <stop offset="100%" stop-color="#b45309"/>
+          </radialGradient>
+        </defs>
+        <circle cx="130" cy="105" r="88" fill="url(#sph)" stroke="#92400e" stroke-width="1.5"/>
+        <ellipse cx="130" cy="105" rx="88" ry="30" fill="none" stroke="#fff7ed" stroke-width="1" opacity="0.7"/>
+        <ellipse cx="130" cy="105" rx="88" ry="62" fill="none" stroke="#fff7ed" stroke-width="1" opacity="0.45"/>
+        <ellipse cx="130" cy="105" rx="38" ry="88" fill="none" stroke="#fff7ed" stroke-width="1" opacity="0.45"/>
+        <line x1="130" y1="17" x2="130" y2="193" stroke="#fff7ed" stroke-width="1" opacity="0.5"/>
+        <circle cx="130" cy="105" r="4" fill="#111827"/>
+        <text x="140" y="100" font-size="12" fill="#111827">origin: Lean-checked</text>
+        <text x="130" y="212" font-size="12" text-anchor="middle" fill="currentColor">Unit 2-sphere, scalar curvature = 2</text>
+      </svg>
+      <p class="fine">Lean checked scalar = 2 at the origin of the chart. The sphere's curvature is constant by symmetry, but Lean has not proved that yet.</p>
+    </div>
+    <div>
+      <p><span class="num">4</span> <span class="lbl">Riemann, at origin</span></p>
+      <p><span class="num">4&delta;</span> <span class="lbl">Ricci = metric, at origin</span></p>
+      <p><span class="num">2</span> <span class="lbl">scalar curvature, at origin</span></p>
+      <p><span class="num">0, 0, 0</span> <span class="lbl">Minkowski: Riemann, Ricci, scalar</span></p>
+      <p><span class="num">-1</span> <span class="lbl">2D Minkowski matrix determinant</span></p>
+    </div>
+  </div>
+  <p><b>Lean check, all three modules:</b> build exit 0, 4,370 jobs, no sorry, axioms only propext, Classical.choice, Quot.sound. Checker re-ran the build independently and passed it.</p>
+  <p><b>Honest limit:</b> the sphere test proves the origin arithmetic only. It cannot test the quadratic terms, and the symbols are hardcoded, not derived from the metric. That is why the judge verdict is GAP, and why the next test uses spherical coordinates.</p>
+</div>
+
+<h2>What the tool does today</h2>
+<ul>
+  <li>Write down a metric with any signature (p, q) on a finite-dimensional space, and check it in Lean.</li>
+  <li>Compute curvature, Ricci, and scalar curvature from coordinate components, and check the values in Lean.</li>
+  <li>Show Minkowski space is flat: Riemann, Ricci, and scalar all zero, checked in Lean.</li>
+  <li>Show the 2-sphere numbers at one point: Ricci equals the metric, scalar equals 2, checked in Lean.</li>
+</ul>
+
+<h2>What it does not do yet</h2>
+<ul>
+  <li>Derive a connection from a metric on a curved manifold. The sphere symbols are hardcoded.</li>
+  <li>State or check the Einstein equations on curved space.</li>
+  <li>State the Kerr metric, or check Ric = 0 for Kerr.</li>
+  <li>Offer Sobolev spaces, embeddings, or energy estimates. Nothing in Phase 3 exists.</li>
+</ul>
+
+<h2>Running now: the fleet pilot, 4 tracks</h2>
+<ul>
+  <li>Track A: spherical-coordinates sphere test, connection derived from the metric.</li>
+  <li>Track B: push the sphere file, land the CI workflow file.</li>
+  <li>Track C: re-judge Phase 1 planning with both hostile reviews, plus the gap file.</li>
+  <li>Track D: state the Kerr metric in Lean and attempt the Ric = 0 check.</li>
+</ul>
+<p class="fine">Each track has a $4 hard cap and its own judge verdict. Results arrive as each track lands.</p>
+</body>
+</html>
