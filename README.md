@@ -47,6 +47,27 @@ The smallest working example in this repo. On two dimensions, the form `-v 0 * w
 
 Run the Lean check with `lake build` inside `lean-phase1/`, and the Python check with `python3 check_showcase.py`. Both must pass. This proves the interface works on a small case. It proves nothing about curved space, the Einstein equations, or Kerr.
 
+## See it: the sphere in 3D
+
+The first curved case the tool proves. The unit 2-sphere in spherical coordinates, metric `g = diag(1, sin²θ)`. Lean checks that the Koszul symbols equal the standard spherical symbols, that Ricci equals the metric wherever `sinθ ≠ 0`, and that the scalar curvature is 2 at `θ = π/4`.
+
+![Unit 2-sphere in spherical coordinates, with the theta = pi/4 circle highlighted](docs/showcase/sphere-hero.png)
+
+The red circle is `θ = π/4`, where `Γᶿ_φφ = −1/2` and `Γᵠ_θφ = 1`, so the `ΓΓ` products are genuinely nonzero. That is what makes this test discriminating: delete the `ΓΓ` sum from the Riemann components and the build fails, with `Rᶿ_φθφ` reading `0 = 1/2`.
+
+![Flat Minkowski plane next to the curved 2-sphere](docs/showcase/flat-vs-curved.png)
+
+Same pipeline, two answers. The flat plane gives `R = 0, Ric = 0, scalar = 0`. The sphere gives `Ric = g, scalar = 2`.
+
+- Rotating video (5 seconds): [docs/showcase/sphere-rotate.mp4](docs/showcase/sphere-rotate.mp4)
+- Interactive 3D, drag to rotate, with the tool pipeline: [docs/showcase-3d.html](docs/showcase-3d.html) (open it in a browser)
+- The Lean file: [lean-phase1/PseudoRiemannian/SphereTestSpherical.lean](lean-phase1/PseudoRiemannian/SphereTestSpherical.lean)
+- Progress per phase, with the same numbers: [docs/scoreboard.html](docs/scoreboard.html)
+
+The tool itself is the pipeline: `Metric.lean` states what a metric is, `LeviCivita.lean` builds the connection and the curvature definitions, `SphereTestSpherical.lean` proves the sphere case, and GitHub Actions rebuilds the whole project and fails on any `sorry` on every push. The badge at the top of this page is that check, live.
+
+This is one chart of one surface, coordinate components only. It proves nothing about general manifolds, the Einstein equations, or Kerr.
+
 ## The signature, locked
 
 Spacetime in 4 dimensions has one time direction and three space directions:
