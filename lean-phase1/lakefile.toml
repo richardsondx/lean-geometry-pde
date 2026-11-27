@@ -1,0 +1,19 @@
+name = "pseudo-riemannian-phase1"
+version = "0.1.0"
+keywords = ["math"]
+defaultTargets = ["PseudoRiemannian"]
+
+[leanOptions]
+pp.unicode.fun = true
+autoImplicit = false
+relaxedAutoImplicit = false
+weak.linter.mathlibStandardSet = true
+maxSynthPendingDepth = 3
+
+[[require]]
+name = "mathlib"
+scope = "leanprover-community"
+rev = "v4.36.0"
+
+[[lean_lib]]
+name = "PseudoRiemannian"
