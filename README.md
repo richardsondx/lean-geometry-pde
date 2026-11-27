@@ -2,17 +2,90 @@
 
 Lean infrastructure for Lorentzian geometry and PDE.
 
-## Goal
-
 Mathlib can describe smooth shapes and positive definite geometry. It cannot yet describe spacetime, where one direction behaves like time and three behave like space. It cannot yet describe the Einstein equations in Lean, or the function spaces that PDE proofs use on curved space.
 
 This repo builds that missing layer. The end state is a Lean library where a researcher can write down a Lorentzian metric, compute its curvature, state the Einstein vacuum equations, state Kerr stability, and state a mass gap, with every definition checked by Lean.
 
 This repo does not prove Kerr stability. It does not prove the Yang-Mills mass gap. It builds the floor those proofs would stand on.
 
-## Plan
+## How it works, in one picture
 
-Read [PLAN.md](PLAN.md). Phases:
+```mermaid
+flowchart LR
+    A[Audit: what Mathlib has] --> B[Architecture: 10 modules]
+    B --> C[Downstream example that fails today]
+    C --> D[Build the missing API]
+    D --> E[Lean check: exit 0, no sorry]
+    E --> F[State the Einstein equations]
+```
+
+Start from a failing example, not from a list. If a step does not unblock a failing example, it does not count.
+
+## What a failing example looks like
+
+A researcher wants a Levi-Civita connection on a spacetime. Today, Lean says no:
+
+```lean
+import Mathlib.Geometry.Manifold.VectorBundle.Riemannian
+
+#check @CovariantDerivative
+-- error: unknown identifier 'CovariantDerivative'
+```
+
+That is the bottleneck for Phase 1. The fix is a covariant derivative API, then a Levi-Civita connection, then curvature, then Ricci. Each step is checked by Lean, and each step must make a failing example pass.
+
+See all four failing examples in [docs/DownstreamExamples.md](docs/DownstreamExamples.md).
+
+## The signature, locked
+
+Spacetime in 4 dimensions has one time direction and three space directions:
+
+```
+g(v, v) < 0   timelike
+g(v, v) = 0   null
+g(v, v) > 0   spacelike
+```
+
+The lock, decided by first principles on 26 Nov 2026:
+
+- (p, q) = (pluses, minuses)
+- Lorentzian (3, 1)
+- Riemannian (n, 0)
+
+## The 10 modules
+
+```mermaid
+flowchart TD
+    Metric[PseudoRiemannian.Metric] --> Musical[Musical]
+    Metric --> RiemannianInterop[RiemannianInterop]
+    Metric --> LeviCivita[LeviCivita]
+    LeviCivita --> Curvature[Curvature]
+    Curvature --> RicciEinstein[RicciEinstein]
+    Metric --> TensorContraction[TensorContraction]
+    Metric --> SobolevLocal[Analysis.Sobolev.LocalDomain]
+    SobolevLocal --> SobolevSection[Geometry.Manifold.SobolevSection]
+    SobolevSection --> GeometricBase[Analysis.PDE.GeometricBase]
+    LeviCivita --> GeometricBase
+```
+
+Full module list, with imports, exports, and forbids, in [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md).
+
+## How to use this repo
+
+- Read the plan first: [PLAN.md](PLAN.md).
+- Check what Mathlib already has: run the audit file.
+
+```bash
+lake env lean Audit/MathlibInventory.lean
+```
+
+It prints 33 `#check` results for names that exist, and 10 commented out lines for names that do not. Exit 0, no sorry.
+
+- Read the architecture: [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md).
+- Read the decisions: [docs/BaselineDecision.md](docs/BaselineDecision.md) moves the baseline to Mathlib v4.36.0, [docs/SobolevRoutes.md](docs/SobolevRoutes.md) compares the weak derivative route with the Bessel potential route, [docs/InteropExample.md](docs/InteropExample.md) shows how the (n, 0) case converts to Mathlib's Riemannian API.
+- Check the reviews: Astra's hostile review is in [handover/astra-review-phase1-planning.md](handover/astra-review-phase1-planning.md). The Gemini review prompt is in [handover/neon-review-prompt.md](handover/neon-review-prompt.md).
+
+## Plan
 
 - Phase 0: audit and architecture, 2 to 4 weeks
 - Phase 1: Lorentzian metric, Levi-Civita, Ricci, 6 to 18 person-months
