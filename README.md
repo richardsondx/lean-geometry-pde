@@ -1,1 +1,129 @@
-IyBsZWFuLWdlb21ldHJ5LXBkZQoKWyFbTGVhbl0oaHR0cHM6Ly9naXRodWIuY29tL3JpY2hhcmRzb25keC9sZWFuLWdlb21ldHJ5LXBkZS9hY3Rpb25zL3dvcmtmbG93cy9sZWFuLnltbC9iYWRnZS5zdmcpXShodHRwczovL2dpdGh1Yi5jb20vcmljaGFyZHNvbmR4L2xlYW4tZ2VvbWV0cnktcGRlL2FjdGlvbnMvd29ya2Zsb3dzL2xlYW4ueW1sKQoKTGVhbiBpbmZyYXN0cnVjdHVyZSBmb3IgTG9yZW50emlhbiBnZW9tZXRyeSBhbmQgUERFLgoKTWF0aGxpYiBjYW4gZGVzY3JpYmUgc21vb3RoIHNoYXBlcyBhbmQgcG9zaXRpdmUgZGVmaW5pdGUgZ2VvbWV0cnkuIEl0IGNhbm5vdCB5ZXQgZGVzY3JpYmUgc3BhY2V0aW1lLCB3aGVyZSBvbmUgZGlyZWN0aW9uIGJlaGF2ZXMgbGlrZSB0aW1lIGFuZCB0aHJlZSBiZWhhdmUgbGlrZSBzcGFjZS4gSXQgY2Fubm90IHlldCBkZXNjcmliZSB0aGUgRWluc3RlaW4gZXF1YXRpb25zIGluIExlYW4sIG9yIHRoZSBmdW5jdGlvbiBzcGFjZXMgdGhhdCBQREUgcHJvb2ZzIHVzZSBvbiBjdXJ2ZWQgc3BhY2UuCgpUaGlzIHJlcG8gYnVpbGRzIHRoYXQgbWlzc2luZyBsYXllci4gVGhlIGVuZCBzdGF0ZSBpcyBhIExlYW4gbGlicmFyeSB3aGVyZSBhIHJlc2VhcmNoZXIgY2FuIHdyaXRlIGRvd24gYSBMb3JlbnR6aWFuIG1ldHJpYywgY29tcHV0ZSBpdHMgY3VydmF0dXJlLCBzdGF0ZSB0aGUgRWluc3RlaW4gdmFjdXVtIGVxdWF0aW9ucywgc3RhdGUgS2VyciBzdGFiaWxpdHksIGFuZCBzdGF0ZSBhIG1hc3MgZ2FwLCB3aXRoIGV2ZXJ5IGRlZmluaXRpb24gY2hlY2tlZCBieSBMZWFuLgoKVGhpcyByZXBvIGRvZXMgbm90IHByb3ZlIEtlcnIgc3RhYmlsaXR5LiBJdCBkb2VzIG5vdCBwcm92ZSB0aGUgWWFuZy1NaWxscyBtYXNzIGdhcC4gSXQgYnVpbGRzIHRoZSBmbG9vciB0aG9zZSBwcm9vZnMgd291bGQgc3RhbmQgb24uCgojIyBIb3cgaXQgd29ya3MsIGluIG9uZSBwaWN0dXJlCgpgYGBtZXJtYWlkCmZsb3djaGFydCBMUgogICAgQVtBdWRpdDogd2hhdCBNYXRobGliIGhhc10gLS0+IEJbQXJjaGl0ZWN0dXJlOiAxMCBtb2R1bGVzXQogICAgQiAtLT4gQ1tEb3duc3RyZWFtIGV4YW1wbGUgdGhhdCBmYWlscyB0b2RheV0KICAgIEMgLS0+IERbQnVpbGQgdGhlIG1pc3NpbmcgQVBJXQogICAgRCAtLT4gRVtMZWFuIGNoZWNrOiBleGl0IDAsIG5vIHNvcnJ5XQogICAgRSAtLT4gRltTdGF0ZSB0aGUgRWluc3RlaW4gZXF1YXRpb25zXQpgYGAKClN0YXJ0IGZyb20gYSBmYWlsaW5nIGV4YW1wbGUsIG5vdCBmcm9tIGEgbGlzdC4gSWYgYSBzdGVwIGRvZXMgbm90IHVuYmxvY2sgYSBmYWlsaW5nIGV4YW1wbGUsIGl0IGRvZXMgbm90IGNvdW50LgoKIyMgV2hhdCBhIGZhaWxpbmcgZXhhbXBsZSBsb29rcyBsaWtlCgpBIHJlc2VhcmNoZXIgd2FudHMgYSBMZXZpLUNpdml0YSBjb25uZWN0aW9uIG9uIGEgc3BhY2V0aW1lLiBUb2RheSwgTGVhbiBzYXlzIG5vOgoKYGBgbGVhbgppbXBvcnQgTWF0aGxpYi5HZW9tZXRyeS5NYW5pZm9sZC5WZWN0b3JCdW5kbGUuUmllbWFubmlhbgoKI2NoZWNrIEBDb3ZhcmlhbnREZXJpdmF0aXZlCi0tIGVycm9yOiB1bmtub3duIGlkZW50aWZpZXIgJ0NvdmFyaWFudERlcml2YXRpdmUnCmBgYAoKVGhhdCBpcyB0aGUgYm90dGxlbmVjayBmb3IgUGhhc2UgMS4gVGhlIGZpeCBpcyBhIGNvdmFyaWFudCBkZXJpdmF0aXZlIEFQSSwgdGhlbiBhIExldmktQ2l2aXRhIGNvbm5lY3Rpb24sIHRoZW4gY3VydmF0dXJlLCB0aGVuIFJpY2NpLiBFYWNoIHN0ZXAgaXMgY2hlY2tlZCBieSBMZWFuLCBhbmQgZWFjaCBzdGVwIG11c3QgbWFrZSBhIGZhaWxpbmcgZXhhbXBsZSBwYXNzLgoKU2VlIGFsbCBmb3VyIGZhaWxpbmcgZXhhbXBsZXMgaW4gW2RvY3MvRG93bnN0cmVhbUV4YW1wbGVzLm1kXShkb2NzL0Rvd25zdHJlYW1FeGFtcGxlcy5tZCkuCgojIyBUcnkgaXQ6IHRoZSAyRCBzaG93Y2FzZQoKVGhlIHNtYWxsZXN0IHdvcmtpbmcgZXhhbXBsZSBpbiB0aGlzIHJlcG8uIE9uIHR3byBkaW1lbnNpb25zLCB0aGUgZm9ybSBgLXYgMCAqIHcgMCArIHYgMSAqIHcgMWAgaXMgYSBtZXRyaWMgd2l0aCBzaWduYXR1cmUgKDEsIDEpLCBhbmQgaXRzIG1hdHJpeCBpcyBgW1stMSwgMF0sIFswLCAxXV1gIHdpdGggZGV0ZXJtaW5hbnQgLTEuIExlYW4gY2hlY2tzIGl0LCBhbmQgYSBQeXRob24gc2NyaXB0IGNoZWNrcyB0aGUgc2FtZSBudW1iZXJzIHdpdGggZXhhY3QgYXJpdGhtZXRpYy4KCi0gTGVhbjogW2xlYW4tcGhhc2UxL1BzZXVkb1JpZW1hbm5pYW4vU2hvd2Nhc2UubGVhbl0obGVhbi1waGFzZTEvUHNldWRvUmllbWFubmlhbi9TaG93Y2FzZS5sZWFuKQotIFB5dGhvbiBjaGVjazogW2xlYW4tcGhhc2UxL2NoZWNrX3Nob3djYXNlLnB5XShsZWFuLXBoYXNlMS9jaGVja19zaG93Y2FzZS5weSkKClJ1biB0aGUgTGVhbiBjaGVjayB3aXRoIGBsYWtlIGJ1aWxkYCBpbnNpZGUgYGxlYW4tcGhhc2UxL2AsIGFuZCB0aGUgUHl0aG9uIGNoZWNrIHdpdGggYHB5dGhvbjMgY2hlY2tfc2hvd2Nhc2UucHlgLiBCb3RoIG11c3QgcGFzcy4gVGhpcyBwcm92ZXMgdGhlIGludGVyZmFjZSB3b3JrcyBvbiBhIHNtYWxsIGNhc2UuIEl0IHByb3ZlcyBub3RoaW5nIGFib3V0IGN1cnZlZCBzcGFjZSwgdGhlIEVpbnN0ZWluIGVxdWF0aW9ucywgb3IgS2Vyci4KCiMjIFRoZSBzaWduYXR1cmUsIGxvY2tlZAoKU3BhY2V0aW1lIGluIDQgZGltZW5zaW9ucyBoYXMgb25lIHRpbWUgZGlyZWN0aW9uIGFuZCB0aHJlZSBzcGFjZSBkaXJlY3Rpb25zOgoKYGBgCmcodiwgdikgPCAwICAgdGltZWxpa2UKZyh2LCB2KSA9IDAgICBudWxsCmcodiwgdikgPiAwICAgc3BhY2VsaWtlCmBgYAoKVGhlIGxvY2ssIGRlY2lkZWQgYnkgZmlyc3QgcHJpbmNpcGxlcyBvbiAyNiBOb3YgMjAyNjoKCi0gKHAsIHEpID0gKHBsdXNlcywgbWludXNlcykKLSBMb3JlbnR6aWFuICgzLCAxKQotIFJpZW1hbm5pYW4gKG4sIDApCgojIyBUaGUgMTAgbW9kdWxlcwoKYGBgbWVybWFpZApmbG93Y2hhcnQgVEQKICAgIE1ldHJpY1tQc2V1ZG9SaWVtYW5uaWFuLk1ldHJpY10gLS0+IE11c2ljYWxbTXVzaWNhbF0KICAgIE1ldHJpYyAtLT4gUmllbWFubmlhbkludGVyb3BbUmllbWFubmlhbkludGVyb3BdCiAgICBNZXRyaWMgLS0+IExldmlDaXZpdGFbTGV2aUNpdml0YV0KICAgIExldmlDaXZpdGEgLS0+IEN1cnZhdHVyZVtDdXJ2YXR1cmVdCiAgICBDdXJ2YXR1cmUgLS0+IFJpY2NpRWluc3RlaW5bUmljY2lFaW5zdGVpbl0KICAgIE1ldHJpYyAtLT4gVGVuc29yQ29udHJhY3Rpb25bVGVuc29yQ29udHJhY3Rpb25dCiAgICBNZXRyaWMgLS0+IFNvYm9sZXZMb2NhbFtBbmFseXNpcy5Tb2JvbGV2LkxvY2FsRG9tYWluXQogICAgU29ib2xldkxvY2FsIC0tPiBTb2JvbGV2U2VjdGlvbltHZW9tZXRyeS5NYW5pZm9sZC5Tb2JvbGV2U2VjdGlvbl0KICAgIFNvYm9sZXZTZWN0aW9uIC0tPiBHZW9tZXRyaWNCYXNlW0FuYWx5c2lzLlBERS5HZW9tZXRyaWNCYXNlXQogICAgTGV2aUNpdml0YSAtLT4gR2VvbWV0cmljQmFzZQpgYGAKCkZ1bGwgbW9kdWxlIGxpc3QsIHdpdGggaW1wb3J0cywgZXhwb3J0cywgYW5kIGZvcmJpZHMsIGluIFtkb2NzL0FSQ0hJVEVDVFVSRS5tZF0oZG9jcy9BUkNISVRFQ1RVUkUubWQpLgoKIyMgSG93IHRvIHVzZSB0aGlzIHJlcG8KCi0gUmVhZCB0aGUgcGxhbiBmaXJzdDogW1BMQU4ubWRdKFBMQU4ubWQpLgotIENoZWNrIHdoYXQgTWF0aGxpYiBhbHJlYWR5IGhhczogcnVuIHRoZSBhdWRpdCBmaWxlLgoKYGBgYmFzaApsYWtlIGVudiBsZWFuIEF1ZGl0L01hdGhsaWJJbnZlbnRvcnkubGVhbgpgYGAKCkl0IHByaW50cyAzMyBgI2NoZWNrYCByZXN1bHRzIGZvciBuYW1lcyB0aGF0IGV4aXN0LCBhbmQgMTAgY29tbWVudGVkIG91dCBsaW5lcyBmb3IgbmFtZXMgdGhhdCBkbyBub3QuIEV4aXQgMCwgbm8gc29ycnkuCgotIFJlYWQgdGhlIGFyY2hpdGVjdHVyZTogW2RvY3MvQVJDSElURUNUVVJFLm1kXShkb2NzL0FSQ0hJVEVDVFVSRS5tZCkuCi0gUmVhZCB0aGUgZGVjaXNpb25zOiBbZG9jcy9CYXNlbGluZURlY2lzaW9uLm1kXShkb2NzL0Jhc2VsaW5lRGVjaXNpb24ubWQpIG1vdmVzIHRoZSBiYXNlbGluZSB0byBNYXRobGliIHY0LjM2LjAsIFtkb2NzL1NvYm9sZXZSb3V0ZXMubWRdKGRvY3MvU29ib2xldlJvdXRlcy5tZCkgY29tcGFyZXMgdGhlIHdlYWsgZGVyaXZhdGl2ZSByb3V0ZSB3aXRoIHRoZSBCZXNzZWwgcG90ZW50aWFsIHJvdXRlLCBbZG9jcy9JbnRlcm9wRXhhbXBsZS5tZF0oZG9jcy9JbnRlcm9wRXhhbXBsZS5tZCkgc2hvd3MgaG93IHRoZSAobiwgMCkgY2FzZSBjb252ZXJ0cyB0byBNYXRobGliJ3MgUmllbWFubmlhbiBBUEkuCi0gQ2hlY2sgdGhlIHJldmlld3M6IEFzdHJhJ3MgaG9zdGlsZSByZXZpZXcgaXMgaW4gW2hhbmRvdmVyL2FzdHJhLXJldmlldy1waGFzZTEtcGxhbm5pbmcubWRdKGhhbmRvdmVyL2FzdHJhLXJldmlldy1waGFzZTEtcGxhbm5pbmcubWQpLiBUaGUgR2VtaW5pIHJldmlldyBwcm9tcHQgaXMgaW4gW2hhbmRvdmVyL25lb24tcmV2aWV3LXByb21wdC5tZF0oaGFuZG92ZXIvbmVvbi1yZXZpZXctcHJvbXB0Lm1kKS4KCiMjIFBsYW4KCi0gUGhhc2UgMDogYXVkaXQgYW5kIGFyY2hpdGVjdHVyZSwgMiB0byA0IHdlZWtzCi0gUGhhc2UgMTogTG9yZW50emlhbiBtZXRyaWMsIExldmktQ2l2aXRhLCBSaWNjaSwgNiB0byAxOCBwZXJzb24tbW9udGhzCi0gUGhhc2UgMjogRWluc3RlaW4gZXF1YXRpb25zIGFuZCBSaWNjaSBmbGF0LCAzIHRvIDkgcGVyc29uLW1vbnRocwotIFBoYXNlIDM6IFNvYm9sZXYsIGVuZXJneSBlc3RpbWF0ZXMsIFBERSB0b29scywgMTIgdG8gMzYgcGVyc29uLW1vbnRocwotIFBoYXNlIDQ6IEtlcnIgbWV0cmljIGFuZCBob3Jpem9ucyBpbiBMZWFuLCA2IHRvIDE4IHBlcnNvbi1tb250aHMKLSBQaGFzZSA1OiBkZWNheSBhbmQgc3RhYmlsaXR5IHNjYWZmb2xkaW5nIG9ubHksIDI0IHRvIDYwIHBlcnNvbi1tb250aHMsIG5vIHByb29mIGNsYWltZWQKClRvdGFsIFBoYXNlcyAwIHRvIDQ6IGFib3V0IDIuNSB0byA3IHBlcnNvbi15ZWFycy4KCiMjIFJ1bGUKCkxlYW4gZGVjaWRlcy4gRXZlcnkgTGVhbiBmaWxlIG11c3QgY29tcGlsZSwgZXhpdCAwLCBubyBzb3JyeSwgbm8gYWRtaXQuIEV2ZXJ5IGNsYWltIG5hbWVzIGEgZmlsZSwgYSBsaW5lLCBhbmQgYSBzb3VyY2UuIEEgY2hlY2tlciByZS1vcGVucyBlYWNoIG9uZS4KCiMjIFN0YXR1cwoKLSBQaGFzZSAwIGF1ZGl0OiBET05FLCAyNiBOb3YgMjAyNi4gQXVkaXQgZmlsZSBjb21waWxlcywgZXhpdCAwLCAzMyBwcmVzZW50LCA5IGFic2VudCwgMSBzYXRlbGxpdGUuCi0gUGhhc2UgMSBwbGFubmluZzoganVkZ2UgdmVyZGljdCBHQVAsIDI2IE5vdiAyMDI2LiBBcmNoaXRlY3R1cmUgZGVsaXZlcmVkIGJ5IE5lb24sIG1hdGggYnkgQXN0cmEsIEFzdHJhIGhvc3RpbGUgcmV2aWV3IGxhbmRlZCAyNiBOb3YgMjAyNiwgR2VtaW5pIHJldmlldyBzdGlsbCBtaXNzaW5nLgotIFNpZ25hdHVyZSBsb2NrOiBET05FLCAyNiBOb3YgMjAyNi4gKHAsIHEpID0gKHBsdXNlcywgbWludXNlcyksIExvcmVudHppYW4gKDMsIDEpLCBSaWVtYW5uaWFuIChuLCAwKS4gUkZDcyBhbWVuZGVkLgotIFBoYXNlcyAxIHRvIDUgY29kZTogcGxhbm5lZCwgbm90IHN0YXJ0ZWQKCiMjIEF1dGhvcgoKUmljaGFyZHNvbiBEYWNrYW0sIGluZGVwZW5kZW50IHJlc2VhcmNoZXIsIFRvcm9udG8sIENhbmFkYS4KTGlua2VkSW46IGh0dHBzOi8vbGlua2VkaW4uY29tL2luL3JpY2hhcmRzb25keApYOiBodHRwczovL3guY29tL1JpY2hhcmRzb25EeAoKIyMgTGljZW5zZQoKTUlUCg==
+# lean-geometry-pde
+
+[![Lean](https://github.com/richardsondx/lean-geometry-pde/actions/workflows/lean.yml/badge.svg)](https://github.com/richardsondx/lean-geometry-pde/actions/workflows/lean.yml)
+
+Lean infrastructure for Lorentzian geometry and PDE.
+
+Mathlib can describe smooth shapes and positive definite geometry. It cannot yet describe spacetime, where one direction behaves like time and three behave like space. It cannot yet describe the Einstein equations in Lean, or the function spaces that PDE proofs use on curved space.
+
+This repo builds that missing layer. The end state is a Lean library where a researcher can write down a Lorentzian metric, compute its curvature, state the Einstein vacuum equations, state Kerr stability, and state a mass gap, with every definition checked by Lean.
+
+This repo does not prove Kerr stability. It does not prove the Yang-Mills mass gap. It builds the floor those proofs would stand on.
+
+## How it works, in one picture
+
+```mermaid
+flowchart LR
+    A[Audit: what Mathlib has] --> B[Architecture: 10 modules]
+    B --> C[Downstream example that fails today]
+    C --> D[Build the missing API]
+    D --> E[Lean check: exit 0, no sorry]
+    E --> F[State the Einstein equations]
+```
+
+Start from a failing example, not from a list. If a step does not unblock a failing example, it does not count.
+
+## What a failing example looks like
+
+A researcher wants a Levi-Civita connection on a spacetime. Today, Lean says no:
+
+```lean
+import Mathlib.Geometry.Manifold.VectorBundle.Riemannian
+
+#check @CovariantDerivative
+-- error: unknown identifier 'CovariantDerivative'
+```
+
+That is the bottleneck for Phase 1. The fix is a covariant derivative API, then a Levi-Civita connection, then curvature, then Ricci. Each step is checked by Lean, and each step must make a failing example pass.
+
+See all four failing examples in [docs/DownstreamExamples.md](docs/DownstreamExamples.md).
+
+## Try it: the 2D showcase
+
+The smallest working example in this repo. On two dimensions, the form `-v 0 * w 0 + v 1 * w 1` is a metric with signature (1, 1), and its matrix is `[[-1, 0], [0, 1]]` with determinant -1. Lean checks it, and a Python script checks the same numbers with exact arithmetic.
+
+- Lean: [lean-phase1/PseudoRiemannian/Showcase.lean](lean-phase1/PseudoRiemannian/Showcase.lean)
+- Python check: [lean-phase1/check_showcase.py](lean-phase1/check_showcase.py)
+
+Run the Lean check with `lake build` inside `lean-phase1/`, and the Python check with `python3 check_showcase.py`. Both must pass. This proves the interface works on a small case. It proves nothing about curved space, the Einstein equations, or Kerr.
+
+## The signature, locked
+
+Spacetime in 4 dimensions has one time direction and three space directions:
+
+```
+g(v, v) < 0   timelike
+g(v, v) = 0   null
+g(v, v) > 0   spacelike
+```
+
+The lock, decided by first principles on 26 Nov 2026:
+
+- (p, q) = (pluses, minuses)
+- Lorentzian (3, 1)
+- Riemannian (n, 0)
+
+## The 10 modules
+
+```mermaid
+flowchart TD
+    Metric[PseudoRiemannian.Metric] --> Musical[Musical]
+    Metric --> RiemannianInterop[RiemannianInterop]
+    Metric --> LeviCivita[LeviCivita]
+    LeviCivita --> Curvature[Curvature]
+    Curvature --> RicciEinstein[RicciEinstein]
+    Metric --> TensorContraction[TensorContraction]
+    Metric --> SobolevLocal[Analysis.Sobolev.LocalDomain]
+    SobolevLocal --> SobolevSection[Geometry.Manifold.SobolevSection]
+    SobolevSection --> GeometricBase[Analysis.PDE.GeometricBase]
+    LeviCivita --> GeometricBase
+```
+
+Full module list, with imports, exports, and forbids, in [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md).
+
+## How to use this repo
+
+- Read the plan first: [PLAN.md](PLAN.md).
+- Check what Mathlib already has: run the audit file.
+
+```bash
+lake env lean Audit/MathlibInventory.lean
+```
+
+It prints 33 `#check` results for names that exist, and 10 commented out lines for names that do not. Exit 0, no sorry.
+
+- Read the architecture: [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md).
+- Read the decisions: [docs/BaselineDecision.md](docs/BaselineDecision.md) moves the baseline to Mathlib v4.36.0, [docs/SobolevRoutes.md](docs/SobolevRoutes.md) compares the weak derivative route with the Bessel potential route, [docs/InteropExample.md](docs/InteropExample.md) shows how the (n, 0) case converts to Mathlib's Riemannian API.
+- Check the reviews: Astra's hostile review is in [handover/astra-review-phase1-planning.md](handover/astra-review-phase1-planning.md). The Gemini review prompt is in [handover/neon-review-prompt.md](handover/neon-review-prompt.md).
+
+## Plan
+
+- Phase 0: audit and architecture, 2 to 4 weeks
+- Phase 1: Lorentzian metric, Levi-Civita, Ricci, 6 to 18 person-months
+- Phase 2: Einstein equations and Ricci flat, 3 to 9 person-months
+- Phase 3: Sobolev, energy estimates, PDE tools, 12 to 36 person-months
+- Phase 4: Kerr metric and horizons in Lean, 6 to 18 person-months
+- Phase 5: decay and stability scaffolding only, 24 to 60 person-months, no proof claimed
+
+Total Phases 0 to 4: about 2.5 to 7 person-years.
+
+## Rule
+
+Lean decides. Every Lean file must compile, exit 0, no sorry, no admit. Every claim names a file, a line, and a source. A checker re-opens each one.
+
+## Status
+
+- Phase 0 audit: DONE, 26 Nov 2026. Audit file compiles, exit 0, 33 present, 9 absent, 1 satellite.
+- Phase 1 planning: judge verdict GAP, 26 Nov 2026. Architecture delivered by Neon, math by Astra, Astra hostile review landed 26 Nov 2026, Gemini review still missing.
+- Signature lock: DONE, 26 Nov 2026. (p, q) = (pluses, minuses), Lorentzian (3, 1), Riemannian (n, 0). RFCs amended.
+- Phases 1 to 5 code: planned, not started
+
+## Author
+
+Richardson Dackam, independent researcher, Toronto, Canada.
+LinkedIn: https://linkedin.com/in/richardsondx
+X: https://x.com/RichardsonDx
+
+## License
+
+MIT
