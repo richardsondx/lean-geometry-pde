@@ -1,5 +1,6 @@
 import PseudoRiemannian.Metric
 import PseudoRiemannian.LeviCivita
 import PseudoRiemannian.MinkowskiTest
-import PseudoRiemannian.Showcase
 import PseudoRiemannian.SphereTest
+import PseudoRiemannian.Showcase
+import PseudoRiemannian.SphereTestSpherical
