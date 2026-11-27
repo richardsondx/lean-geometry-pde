@@ -13,10 +13,10 @@ jobs:
       - name: Check out repo
         uses: actions/checkout@v4
 
-      - name: Install elan
-        run: |
-          curl -sSf https://elan.lean-lang.org | sh -s -- -y --default-toolchain none
-          echo "$HOME/.elan/bin" >> "$GITHUB_PATH"
+      - name: Install Lean
+        uses: leanprover/lean-action@v1
+        with:
+          lean-toolchain: lean-phase1/lean-toolchain
 
       - name: Fetch Mathlib cache
         working-directory: lean-phase1
