@@ -1,0 +1,20 @@
+# Astra hostile review, Phase 1 planning architecture
+
+Date: 26 Nov 2026, ~21:56 EST
+Model: GPT-6.2 Astra, openai/gpt-6.2-astra, via OpenRouter or_chat.py, max-tokens 8000, first attempt, exit 0.
+Prompt: the Astra prompt recorded verbatim in check-log-phase1-planning.md lines 239-276, plus one update line at the top: signature locked (3, 1), RFCs amended, wrong paths fixed in v02.
+Note: the Gemini 4 Neon review of Astra math is still missing. Richardson will run that review elsewhere. This file is the Astra half of GAP-1 only.
+
+Verbatim reply:
+
+**6 — Still stands on usability.** The strongest flaw is the jump from a v4.36.0 Levi-Civita interface to a promised existence theorem for **every** nondegenerate signature. A Koszul lemma and a uniqueness theorem do not supply an indefinite connection. The Riemannian restriction reported for PR 36128 is not proof of the release API’s exact hypotheses, either. Require a compiled example constructing the connection from the proposed metric interface without a `RiemannianBundle` assumption. The narrower documentation objection is answered: each module names a downstream use. But a planned `lake build`, a `#check`, and an axiom report are not a downstream test: even an axiom-free theorem can require hypotheses its intended caller cannot supply.
+
+**1 — Answered for the delivered paths.** On the v02 re-check as reported, the operative imports now use `PathELength` and the `VectorBundle.CovariantDerivative` path. The earlier generator note alone did not fix the document; the edits did. Withdraw the nonexistent-import objection. A corrected string does not establish that Step 0 ran or that the imported declarations have the required types. Check the documented imports in a Lean file against the pinned release.
+
+**2 — Answered.** The amended RFCs lock `(p,q) = (pluses,minuses)`. Riemannian `(n,0)`, spacetime `(3,1)`, and Lorentzian `(n−1,1)` no longer contradict Phase 0. No further signature decision blocks implementation. If the architecture still lists two options, remove the stale decision item; it is not a live dispute.
+
+**3 — Target chosen; comparative cost still open.** v4.36.0 has a concrete advantage over v4.29.0: the named Sobolev layer as well as covariant derivatives. That justifies a target, not a claim of least effort. The 3,901 new lines measure patch size, not porting labor; “zero vendoring” does not price migration, satellite skew, or adapting the APIs. GAP-4b is answered as a baseline choice, not as a cost comparison. Run a time-boxed migration build and record breakages before committing the schedule. Pin v4.36.0 and its commit; a later release should trigger no automatic retargeting.
+
+**4 — One dependency objection survives.** `GeometricBase` names Lax–Milgram but lists no direct provider import. That is an undocumented dependency, not a demonstrated compile failure: it might arrive transitively. Add the explicit import and test the intended application with its coercivity hypotheses. The other alleged conflicts do not follow. An upstream import prohibition on `Metric` does not bind `RiemannianInterop`; its instances should be tested with the scope closed and open. `SobolevSection` using atlases does not make `LocalDomain` import them. `Musical` and `RiemannianInterop` are parallel **after** `Metric` on the stated graph. More consequentially, the connection interface and local Sobolev foundation remain undecided; the graph orders files without settling what their consumers can assume.
+
+**5 — Still stands, with limited damage.** Tree-wide `Riemann` has 336 hits and `expMap` 192. The defensible findings concern curvature and the geometric exponential map, not zero string matches. Those errors do not invalidate the independently located declarations or the four failed probes. But an unknown identifier excludes that spelling, not an equivalent API; an absent `Analysis/PDE` directory does not exclude PDE results elsewhere. Mark search results by tag, scope, and query, distinguish “not located” from “absent,” and re-audit v4.36.0 before assigning implementation work from the v4.23.0 inventory.
