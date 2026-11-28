@@ -19,7 +19,7 @@ Target baseline: upgrade the local Mathlib pin from v4.23.0 to v4.36.0 in Step 0
 - `PseudoRiemannian.RiemannianInterop`: enables applying `IsRiemannianManifold`, `Manifold.riemannianEDist`, and tangent `InnerProductSpace` lemmas to `(n, 0)` metrics without duplicate instances.
 - `PseudoRiemannian.Musical`: enables smooth index raising and lowering in the Koszul formula and metric contractions via bundle isomorphisms.
 - `PseudoRiemannian.TensorContraction`: enables forming the Ricci tensor as a frame-independent trace of Riemann curvature and scalar curvature as a metric contraction of Ricci.
-- `PseudoRiemannian.LeviCivita`: enables computing the unique torsion-free metric-compatible connection and local Christoffel symbols for arbitrary `(p, q)` metrics.
+- `PseudoRiemannian.LeviCivita`: enables computing, in the Riemannian `(n, 0)` case, the unique torsion-free metric-compatible connection, with local Christoffel symbols defined in this module and checked against upstream only where the checker verified them (existence :359, uniqueness :255-258, gating :126, :156, :172), and, for indefinite `(p, q)` metrics, building that connection as a Phase 1 obligation (see the Per-Module Specification below).
 - `PseudoRiemannian.Curvature`: enables computing the Riemann tensor, a (1, 3)-type tensor, `R(X, Y)Z = nabla_X nabla_Y Z - nabla_Y nabla_X Z - nabla_[X,Y] Z` and proving the first and second Bianchi identities.
 - `PseudoRiemannian.RicciEinstein`: enables computing Ricci curvature, scalar curvature, the Einstein tensor `G = Ric - (1/2) R g`, and the contracted Bianchi law `div G = 0`.
 - `Analysis.Sobolev.LocalDomain`: enables chart-level weak derivatives, `W^{k,p}(U)` norms on open Euclidean sets, Sobolev embedding into `C^m`, and Rellich-Kondrachov compactness.
@@ -35,7 +35,7 @@ Target baseline: upgrade the local Mathlib pin from v4.23.0 to v4.36.0 in Step 0
 
 ### `PseudoRiemannian.RiemannianInterop`
 - Imports: `PseudoRiemannian.Metric`, `Mathlib.Geometry.Manifold.Riemannian.Basic`, `Mathlib.Geometry.Manifold.Riemannian.PathELength` (for `Bundle.ContMDiffRiemannianMetric` and `Manifold.riemannianEDist`; the v4.36.0 Riemannian directory holds only Basic.lean and PathELength.lean, and the PathELength path is to be re-confirmed at Step 0).
-- Exports: `PseudoRiemannianMetric.pos_of_q_eq_zero`, `PseudoRiemannianMetric.isVonNBounded_of_q_eq_zero`, `PseudoRiemannianMetric.toContMDiffRiemannianMetric`, `Bundle.ContMDiffRiemannianMetric.toPseudoRiemannianMetric` (plain `def`, not an instance), scoped instances in namespace `PseudoRiemannian.Riemannian` for `Bundle.RiemannianBundle`, `IsContMDiffRiemannianBundle`, and `IsRiemannianManifold` (open decision, see below: these scoped instances are in tension with the existing Mathlib instance at VectorBundle/Riemannian.lean:257 and are not yet justified).
+- Exports: `PseudoRiemannianMetric.pos_of_q_eq_zero`, `PseudoRiemannianMetric.isVonNBounded_of_q_eq_zero`, `PseudoRiemannianMetric.toContMDiffRiemannianMetric`, `Bundle.ContMDiffRiemannianMetric.toPseudoRiemannianMetric` (plain `def`, not an instance), scoped instances in namespace `PseudoRiemannian.Riemannian` for `Bundle.RiemannianBundle`, `IsContMDiffRiemannianBundle`, and `IsRiemannianManifold` (open decision, see below: these scoped instances are in tension with the existing Mathlib instance at VectorBundle/Riemannian.lean:264 and are not yet justified).
 - Forbids: global `instance` declarations for `Bundle.RiemannianBundle`, `NormedAddCommGroup`, or `InnerProductSpace`; importing `CovariantDerivative`, curvature, or Sobolev modules.
 
 ### `PseudoRiemannian.Musical`
@@ -50,8 +50,9 @@ Target baseline: upgrade the local Mathlib pin from v4.23.0 to v4.36.0 in Step 0
 
 ### `PseudoRiemannian.LeviCivita`
 - Imports: `PseudoRiemannian.Metric`, `PseudoRiemannian.Musical`, `Mathlib.Geometry.Manifold.VectorBundle.CovariantDerivative.Basic`, `Mathlib.Geometry.Manifold.VectorBundle.CovariantDerivative.LeviCivita`.
-- Exports: `IsMetricCompatible` for arbitrary `(p, q)` metrics, `IsTorsionFree`, Koszul formula, `PseudoRiemannianMetric.leviCivita` (existence and uniqueness of the torsion-free metric-compatible connection for any nondegenerate signature `(p, q)`), `PseudoRiemannianMetric.christoffel` (chart symbols and transformation law), compatibility with upstream Riemannian Levi-Civita in the positive-definite case.
-- Forbids: importing PR 36128 or unmerged forks; restricting uniqueness to positive-definite metrics; curvature definitions.
+- Exports: `IsMetricCompatible` for `(p, q)` metrics, `IsTorsionFree`, Koszul formula, `PseudoRiemannianMetric.leviCivita` (existence and uniqueness of the torsion-free metric-compatible connection in the Riemannian `(n, 0)` case, as supplied upstream; for indefinite `(p, q)` the connection is a Phase 1 build obligation, not an upstream export), `PseudoRiemannianMetric.christoffel` (chart symbols and transformation law, defined in this module; checked against upstream only where the checker verified them, existence :359, uniqueness :255-258, gating :126, :156, :172). Amended 27 Nov 2026, run stage2-mathlib-geometry-planning-docs-01: upstream v4.36.0 supplies Riemannian-only existence and uniqueness, Mathlib/Geometry/Manifold/VectorBundle/CovariantDerivative/LeviCivita.lean, existence `def leviCivitaConnection` at line 359, uniqueness theorem at lines 255-258, gated by `[RiemannianBundle]` at lines 126 and 156 and `[IsContMDiffRiemannianBundle]` at line 172 (verdict-phase1-planning-v02.md; check-log-phase1-planning-v03.md item 1). The indefinite case is a Phase 1 build obligation with a named route: generalise the Koszul construction, or port Hilbert6 `PseudoRiemannianMetric.exists_isLeviCivitaFor` (pinned commit ddbe9da, line 371, verified live in check-log-phase1-planning-v03.md item 4). Indefinite uniqueness is a separate explicit proof obligation, not supplied by Hilbert6 existence alone.
+- Downstream note, 27 Nov 2026, fix cycle 2: `PseudoRiemannian.Curvature` and `PseudoRiemannian.RicciEinstein` depend on the Phase 1-built connection for indefinite signatures and are blocked until that construction exists, while the Riemannian `(n, 0)` case proceeds on the upstream connection.
+- Forbids: importing PR 36128 or unmerged forks; claiming upstream existence or uniqueness for indefinite signatures; curvature definitions.
 
 ### `PseudoRiemannian.Curvature`
 - Imports: `PseudoRiemannian.Metric`, `PseudoRiemannian.LeviCivita`.
@@ -115,7 +116,7 @@ Direction: `A -> B` means `A` imports `B`.
 1. `PseudoRiemannian.Metric`: `lake build` succeeds; `#print axioms` on Minkowski metric reports only standard Lean axioms.
 2. `PseudoRiemannian.RiemannianInterop` and `PseudoRiemannian.Musical` (parallel): `lake build` succeeds; `#check` confirms positive-definite bridge to `Riemannian.Basic` plus `flat_sharp` and `sharp_flat`.
 3. `PseudoRiemannian.TensorContraction`: `lake build` succeeds; `#check` confirms `metricTrace` of the metric equals manifold dimension and matches chart trace.
-4. `PseudoRiemannian.LeviCivita`: `lake build` succeeds; `#check` confirms uniqueness, Christoffel formula for arbitrary `(p, q)`, and agreement with upstream `CovariantDerivative.LeviCivita`.
+4. `PseudoRiemannian.LeviCivita`: `lake build` succeeds; `#check` confirms uniqueness and the Christoffel formula in the Riemannian `(n, 0)` case, checked against the upstream connection only where the checker verified it (existence :359, uniqueness :255-258, gating :126, :156, :172). For indefinite `(p, q)`, the connection is a construction obligation with its own prior build step (generalised Koszul construction, or the Hilbert6 port); that step must land before any `#check` of the indefinite case, since a `#check` cannot confirm a construction into existence.
 5. `PseudoRiemannian.Curvature`: `lake build` succeeds; `#check` confirms `C^infty`-multilinearity of `riemannEnd`, symmetries of `riemannCov`, and both Bianchi identities.
 6. `PseudoRiemannian.RicciEinstein`: `lake build` succeeds; `#check` and `#print axioms` confirm `ricciTensor` symmetry and `contractedSecondBianchi` (`div G = 0`) use only standard axioms.
 7. `Analysis.Sobolev.LocalDomain`: `lake build` succeeds; `#check` confirms Banach completeness and compact-subset diffeomorphism invariance.
@@ -123,16 +124,13 @@ Direction: `A -> B` means `A` imports `B`.
 9. `Analysis.PDE.GeometricBase`: `lake build` succeeds; `#check` and `#print axioms` confirm `weakEllipticSolvability` and `waveEnergyBound` typecheck against `SobolevSection` with only standard axioms.
 
 ### Open Decisions for Mathlib Reviewer
-- Signature `(p, q)` ordering (disputed; must be locked before any file is written):
-  - Option A (Phase 0 lock): `(p, q) = (minuses, pluses)`, Lorentzian is `(1, 3)`. Cost: differs from Sylvester `(pluses, minuses)` in algebra texts and makes Riemannian metrics `(0, n)`.
-  - Option B (architecture draft): `(p, q) = (pluses, minuses)`, Lorentzian is `(3, 1)`. Cost: breaks Phase 0 artifacts and departs from `(1, n-1)` physics conventions, requiring Phase 0 edits.
 - Connection interface in `PseudoRiemannian.LeviCivita`:
   - Option A (extend upstream `CovariantDerivative.Basic` directly): lower duplication, higher refactor cost if upstream v4.36.0 lacks non-Riemannian hooks.
   - Option B (local typeclass plus equivalence bridge): faster initial build, higher maintenance and upstreaming friction.
 - `LocalSobolevSpace` foundation:
   - Option A (restrict upstream `TemperedDistribution` Sobolev spaces): reuses `Mathlib.Analysis.Distribution.Sobolev` directly, adds boundary-extension work.
   - Option B (define distributional derivatives directly on open `U`): cleaner interior theory, duplicates distributional infrastructure.
-- Scoped instances in `PseudoRiemannian.RiemannianInterop` (open, owned by the Phase 1 lead): the architecture exports scoped instances in namespace `PseudoRiemannian.Riemannian` for `Bundle.RiemannianBundle`, `IsContMDiffRiemannianBundle`, and `IsRiemannianManifold`, but the existing Mathlib instance at VectorBundle/Riemannian.lean:257 already registers `RiemannianBundle` (plus `IsContMDiffRiemannianBundle`) from any `ContMDiffRiemannianMetric`. The fix cycle could not resolve from the evidence whether the scoped instances create a second live registration path or are needed despite that instance, so no resolution is asserted here. The Phase 1 lead must decide: drop the scoped instances and rely on the existing registration as the sole source, or record exactly why they are needed despite it, naming each instance. See docs/InteropExample.md for the same open decision.
+- Scoped instances in `PseudoRiemannian.RiemannianInterop` (open, owned by the Phase 1 lead): the architecture exports scoped instances in namespace `PseudoRiemannian.Riemannian` for `Bundle.RiemannianBundle`, `IsContMDiffRiemannianBundle`, and `IsRiemannianManifold`, but the existing Mathlib instance at VectorBundle/Riemannian.lean:264 already registers `RiemannianBundle` (plus `IsContMDiffRiemannianBundle`) from any `ContMDiffRiemannianMetric`. The fix cycle could not resolve from the evidence whether the scoped instances create a second live registration path or are needed despite that instance, so no resolution is asserted here. The Phase 1 lead must decide, before any Phase 1 file registers instances: drop the scoped instances, or record exactly why each is needed, naming each instance. The converted metric is one registration path, not a guaranteed sole source. The registration instance at Mathlib/Geometry/Manifold/VectorBundle/Riemannian.lean:264-268 registers `RiemannianBundle E` from any `ContMDiffRiemannianMetric`, and `RiemannianBundle` is indexed by `E`, not by the metric, so two distinct `(n, 0)` metrics, or one converted metric plus an ambient `RiemannianBundle`, can collide in a typeclass diamond. The priority-80 scoped fiber instances at Mathlib/Topology/VectorBundle/Riemannian.lean:431 (`NormedAddCommGroup`) and :453 (`InnerProductSpace`) in v4.36.0 can also be shadowed where a default-priority fiber `NormedAddCommGroup` wins synthesis. This diamond and shadowing risk is an owned open design decision, owner Phase 1 lead, decision point named above. Sources: verdict-phase1-planning-v02.md (GAP-C); check-log-phase1-planning-v03.md item 7. See docs/InteropExample.md for the same open decision.
 
 ## Generator verification notes (not Neon output)
 
@@ -148,27 +146,19 @@ Direction: `A -> B` means `A` imports `B`.
   segment. The correct path is
   `Mathlib.Geometry.Manifold.VectorBundle.CovariantDerivative.Basic`, as Neon wrote
   in its second call and as verified on the v4.36.0 tag. The header now uses the correct path.
-- Unverified path, flagged in fix cycle 1: the Metric imports list
-  `Mathlib.Geometry.Manifold.VectorBundle.LocalFrame`, but that module has 0 hits
-  in the local v4.23.0 tree (no file of that name exists there) and is not among the
-  paths the generator verified on the v4.36.0 tag. No replacement path is asserted
-  here, because none was verified. Confirm whether the module exists under that name
-  on v4.36.0, and correct the import if it does not, at Step 0 before any file uses it.
-  The other imports in this file were checked in fix cycle 1 against the local
+- LocalFrame path, verified on v4.36.0 (amended 27 Nov 2026, run stage2-mathlib-geometry-planning-docs-01): the Metric imports list
+  `Mathlib.Geometry.Manifold.VectorBundle.LocalFrame`. That module had 0 hits
+  in the local v4.23.0 tree, which was the flag in fix cycle 1. It is verified
+  to exist on v4.36.0 at Mathlib/Geometry/Manifold/VectorBundle/LocalFrame.lean
+  (check-log-phase1-planning-v03.md item 6), so that Step 0 sub-item is closed
+  and no replacement path is needed. The other imports in this file were checked in fix cycle 1 against the local
   v4.23.0 tree: Tangent, SmoothSection, MFDeriv.Atlas, BilinearForm.Properties,
   QuadraticForm.Real, Riemannian.Basic, and Riemannian.PathELength all exist there.
   The CovariantDerivative, Sobolev, and TemperedDistribution paths are v4.36.0
   target paths, absent in v4.23.0 by design, verified by the generator on the
   v4.36.0 tag per docs/BaselineDecision.md.
-- Signature ordering, open conflict: Phase 0 docs/RFC_PseudoRiemannian.md is
-  internally inconsistent on this point. It says the signature (p, q) has p minus
-  ones and q plus ones, Lorentzian is (1, 3), and Riemannian is (n, 0). Under its
-  own ordering rule, (n, 0) means n minuses and 0 pluses, which is negative
-  definite, not Riemannian. Neon and Astra both use (p, q) as (pluses, minuses),
-  Riemannian (n, 0), Lorentzian (3, 1). The ordering must be locked before any
-  file is written, and locking (pluses, minuses) requires amending
-  docs/RFC_PseudoRiemannian.md. The signature (-, +, +, +) itself is not in
-  dispute, only how (p, q) counts it.
+- Step 0 import-check gate, noted 27 Nov 2026, run stage2-mathlib-geometry-planning-docs-01: no Lean import check of the documented imports against pinned v4.36.0 has run. The v4.36.0 inventory in these docs rests on grep, API, and source reads. The audit re-run failed because the local olean cache is partial (ChartedSpace.olean and MDifferentiable.olean missing; a Metric.lean check timed out at 300s). The owned Step 0 gate is to run the import check with a full olean cache before any Phase 1 file uses the imports, owner Phase 1 lead. Sources: verdict-phase1-planning-v02.md (GAP-F); check-log-phase1-planning-v03.md, audit re-run section.
+- Signature ordering, locked 26 Nov 2026: the lock is (p, q) = (pluses, minuses), Lorentzian (3, 1), Riemannian (n, 0). The RFCs were amended at docs/RFC_PseudoRiemannian.md lines 37-40 and docs/RFC_Conventions.md line 78. The earlier open-conflict note in this file is withdrawn; the stale Open Decisions item above was removed in the same amendment (27 Nov 2026, run stage2-mathlib-geometry-planning-docs-01). Source: verdict-phase1-planning-v02.md, condition 3.
 - Statements each module must serve: the math author (Astra) states them in
   docs/DownstreamExamples.md, docs/SobolevRoutes.md, and docs/InteropExample.md.
   The module list above states the downstream theorem or computation each module
