@@ -10,6 +10,22 @@ This repo builds that missing layer. The end state is a Lean library where a res
 
 This repo does not prove Kerr stability. It does not prove the Yang-Mills mass gap. It builds the floor those proofs would stand on.
 
+## Why this exists
+
+Mathlib is the largest library of mathematics a computer has checked, written in Lean. Every proof in it is verified by Lean's kernel, so a proof in Mathlib cannot hide a gap.
+
+People use Mathlib to formalize real theorems. Peter Scholze's Liquid Tensor Experiment was formalized there. The polynomial Freiman-Ruzsa conjecture was formalized in weeks after the paper came out. People also use it to train AI theorem provers, to teach, and to build verified software.
+
+Our audit checked 43 pieces of Mathlib by name. 33 exist, 9 are absent, 1 lives in a side project. The absent ones are the reason this repo exists.
+
+Mathlib has Riemannian geometry, where every direction measures positive. It has no Lorentzian geometry, where one direction measures negative. That is the geometry of spacetime. It has no Lorentzian metric, no indefinite Levi-Civita connection, no Ricci operator for indefinite metrics. It has Sobolev spaces only in one narrow form, on flat space. It has no Sobolev spaces on domains or manifolds, no embeddings, no trace theorem, no weighted spaces, no energy estimates for the wave equation. The pull request that would add the Levi-Civita connection has sat open and unmerged.
+
+So general relativity, the physics of black holes, has no home in the world's biggest formal math library. This repo builds that home.
+
+Why it is worth doing: a proof checked by Lean cannot hide a gap, and the Kerr stability proof spans hundreds of pages across many papers. Infrastructure compounds. Once this layer exists, every later project starts from it instead of from zero. A Lorentzian layer is a whole missing area, and the people formalizing physics would use it.
+
+The honest limits: this is infrastructure, not new mathematics. The theorems are known. We are making the computer check them. Mainstream mathematicians do not use Lean yet, so this matters to the formalization community first. Mathlib review is slow, and the full plan is years of work.
+
 ## How it works, in one picture
 
 ```mermaid
@@ -134,10 +150,15 @@ Lean decides. Every Lean file must compile, exit 0, no sorry, no admit. Every cl
 
 ## Status
 
-- Phase 0 audit: DONE, 26 Nov 2026. Audit file compiles, exit 0, 33 present, 9 absent, 1 satellite.
-- Phase 1 planning: judge verdict GAP, 26 Nov 2026. Architecture delivered by Neon, math by Astra, Astra hostile review landed 26 Nov 2026, Gemini review still missing.
-- Signature lock: DONE, 26 Nov 2026. (p, q) = (pluses, minuses), Lorentzian (3, 1), Riemannian (n, 0). RFCs amended.
-- Phases 1 to 5 code: planned, not started
+- Phase 0 audit: DONE, 26 Nov 2026. 33 present, 9 absent, 1 satellite.
+- Signature lock: DONE, 26 Nov 2026. (p, q) = (pluses, minuses), Lorentzian (3, 1), Riemannian (n, 0).
+- Phase 1 planning: DONE (v03), 27 Nov 2026, pushed 28 Nov 2026.
+- Phase 1 build: GAP (v01). Modules compile, sphere test DONE in spherical form. Close-out running.
+- Phase 2 Einstein: DONE narrow (v01), 28 Nov 2026, pushed, CI green. API job and divergence-free running.
+- Phase 3 Sobolev first slice: DONE (v02), 28 Nov 2026, pushed, CI green. Carrier design DONE (v03). Bridge proof, embeddings, weighted running.
+- Phase 4 Kerr: Ric = 0 running, verdict pending. Horizons located, proved 25 Nov 2026.
+- Phase 5 stability scaffolding: running.
+- Checklist: [docs/CHECKLIST.md](docs/CHECKLIST.md), 17 of 47 done, 28 Nov 2026.
 
 ## Author
 
