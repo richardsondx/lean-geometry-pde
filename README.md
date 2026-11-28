@@ -51,11 +51,11 @@ Run the Lean check with `lake build` inside `lean-phase1/`, and the Python check
 
 The first curved case the tool proves. The unit 2-sphere in spherical coordinates, metric `g = diag(1, sin²θ)`. Lean checks that the Koszul symbols equal the standard spherical symbols, that Ricci equals the metric wherever `sinθ ≠ 0`, and that the scalar curvature is 2 at `θ = π/4`.
 
-![Unit 2-sphere in spherical coordinates, with the theta = pi/4 circle highlighted](docs/showcase/sphere-hero.png)
+![Unit 2-sphere in spherical coordinates, with the theta = pi/4 circle highlighted](docs/showcase/sphere-hero.png?v=2)
 
 The red circle is `θ = π/4`, where `Γᶿ_φφ = −1/2` and `Γᵠ_θφ = 1`, so the `ΓΓ` products are genuinely nonzero. That is what makes this test discriminating: delete the `ΓΓ` sum from the Riemann components and the build fails, with `Rᶿ_φθφ` reading `0 = 1/2`.
 
-![Flat Minkowski plane next to the curved 2-sphere](docs/showcase/flat-vs-curved.png)
+![Flat Minkowski plane next to the curved 2-sphere](docs/showcase/flat-vs-curved.png?v=2)
 
 Same pipeline, two answers. The flat plane gives `R = 0, Ric = 0, scalar = 0`. The sphere gives `Ric = g, scalar = 2`.
 
