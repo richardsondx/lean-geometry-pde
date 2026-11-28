@@ -2,6 +2,8 @@
 
 [![Lean](https://github.com/richardsondx/lean-geometry-pde/actions/workflows/lean.yml/badge.svg)](https://github.com/richardsondx/lean-geometry-pde/actions/workflows/lean.yml)
 
+Part of **Physics in Lean**, a series of Mathlib libraries for physics and astrophysics. Each library in the series is named `lean-<topic>`: this one is geometry and PDE, the next is Yang-Mills and quantum field theory.
+
 Lean infrastructure for Lorentzian geometry and PDE.
 
 Mathlib can describe smooth shapes and positive definite geometry. It cannot yet describe spacetime, where one direction behaves like time and three behave like space. It cannot yet describe the Einstein equations in Lean, or the function spaces that PDE proofs use on curved space.
