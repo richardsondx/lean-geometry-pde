@@ -4,3 +4,4 @@ import PseudoRiemannian.MinkowskiTest
 import PseudoRiemannian.SphereTest
 import PseudoRiemannian.Showcase
 import PseudoRiemannian.SphereTestSpherical
+import PseudoRiemannian.Einstein
