@@ -33,11 +33,15 @@ call 2. The generator verification block at the end is not Astra output.
 
 ## Generator verification (not Astra output)
 
-- Bessel route consumable on v4.36.0: confirmed by reading master
+- Bessel route consumable on v4.36.0: confirmed by reading
   Mathlib/Analysis/Distribution/Sobolev.lean. It defines besselPotential at
-  line 73, MemSobolev at line 153, and proves SchwartzMap.memSobolev,
+  line 72, MemSobolev at line 152, and proves SchwartzMap.memSobolev,
   MemSobolev.lineDerivOp, MemSobolev.laplacian. Sobolev.lean returns 404 at
-  v4.29.0 and 200 at v4.36.0.
+  v4.29.0 and 200 at v4.36.0. Amended 27 Nov 2026, run
+  stage2-mathlib-geometry-planning-docs-01: the line numbers were 73 and 153
+  before this amendment; both were off by one in the v4.36.0 tree
+  (check-log-phase1-planning-v03.md item 3; verdict-phase1-planning-v02.md,
+  GAP-D).
 - Weak route is a build on either baseline: confirmed by grep. In v4.23.0,
   HasWeakDeriv, WeakDeriv, and HasDistribDeriv return 0 hits in the whole
   tree. In master Sobolev.lean, DerivNotation.lean, and
