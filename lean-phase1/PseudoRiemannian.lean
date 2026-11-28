@@ -5,3 +5,4 @@ import PseudoRiemannian.SphereTest
 import PseudoRiemannian.Showcase
 import PseudoRiemannian.SphereTestSpherical
 import PseudoRiemannian.Einstein
+import PseudoRiemannian.SobolevSlice
