@@ -34,20 +34,20 @@
 </head>
 <body>
 <h1>lean-geometry-pde scoreboard</h1>
-<p class="sub">Goal: build the geometry and PDE layer Mathlib lacks. Updated 27 Nov 2026.</p>
+<p class="sub">Goal: build the geometry and PDE layer Mathlib lacks. Updated 28 Nov 2026.</p>
 
-<div class="big"><b>~6%</b><span>done, by effort</span></div>
-<div class="bar"><i style="width:6%"></i></div>
-<p class="fine">Method: each phase weighted by the midpoint of its effort range in the plan (Phase 0: 3 weeks, Phase 1: 12 months, Phase 2: 6, Phase 3: 24, Phase 4: 12, Phase 5 scaffolding: 42, total 96.75 person-months). Done so far: Phase 0 plus about 40% of Phase 1 plus about 5% of Phase 4, about 6.2 of 96.75 months. The share stays near 6% whether you use the low or high ends of the ranges. Correction: I said roughly 10% earlier; recomputing it properly from the plan gives about 6%.</p>
+<div class="big"><b>~16%</b><span>done, by effort</span></div>
+<div class="bar"><i style="width:16%"></i></div>
+<p class="fine">Method: each phase weighted by the midpoint of its effort range in the plan (Phase 0: 3 weeks, Phase 1: 12 months, Phase 2: 6, Phase 3: 24, Phase 4: 12, Phase 5 scaffolding: 42, total 96.75 person-months). Done so far: Phase 0 plus about 50% of Phase 1, about 50% of Phase 2, about 15% of Phase 3, about 15% of Phase 4, about 2% of Phase 5, about 16 of 96.75 months. By checklist count the share is higher, 17 of 47 items, because small items count the same as large ones there. Full checklist: docs/CHECKLIST.md.</p>
 
 <h2>Per phase</h2>
 <div class="row"><span class="name">Phase 0, audit</span><div class="bar"><i style="width:100%"></i></div><span class="pct">100%</span><span class="pill done">DONE</span></div>
 <div class="row"><span class="name">Signature lock (3, 1)</span><div class="bar"><i style="width:100%"></i></div><span class="pct">100%</span><span class="pill done">DONE</span></div>
-<div class="row"><span class="name">Phase 1, metric + curvature</span><div class="bar"><i style="width:40%"></i></div><span class="pct">~40%</span><span class="pill gap">GAP</span></div>
-<div class="row"><span class="name">Phase 2, Einstein equations</span><div class="bar"><i style="width:0%"></i></div><span class="pct">0%</span><span class="pill zero">not started</span></div>
-<div class="row"><span class="name">Phase 3, Sobolev + PDE</span><div class="bar"><i style="width:0%"></i></div><span class="pct">0%</span><span class="pill zero">not started</span></div>
-<div class="row"><span class="name">Phase 4, Kerr metric</span><div class="bar"><i style="width:5%"></i></div><span class="pct">~5%</span><span class="pill gap">GAP</span></div>
-<div class="row"><span class="name">Phase 5, stability scaffolding</span><div class="bar"><i style="width:0%"></i></div><span class="pct">0%</span><span class="pill zero">not started</span></div>
+<div class="row"><span class="name">Phase 1, metric + curvature</span><div class="bar"><i style="width:50%"></i></div><span class="pct">~50%</span><span class="pill gap">GAP</span></div>
+<div class="row"><span class="name">Phase 2, Einstein equations</span><div class="bar"><i style="width:50%"></i></div><span class="pct">~50%</span><span class="pill gap">partial</span></div>
+<div class="row"><span class="name">Phase 3, Sobolev + PDE</span><div class="bar"><i style="width:15%"></i></div><span class="pct">~15%</span><span class="pill gap">partial</span></div>
+<div class="row"><span class="name">Phase 4, Kerr metric</span><div class="bar"><i style="width:15%"></i></div><span class="pct">~15%</span><span class="pill gap">GAP</span></div>
+<div class="row"><span class="name">Phase 5, stability scaffolding</span><div class="bar"><i style="width:2%"></i></div><span class="pct">~2%</span><span class="pill gap">running</span></div>
 
 <h2>Visual proof: what the tool does today</h2>
 <div class="card">
@@ -80,8 +80,8 @@
       <p><span class="num">-1</span> <span class="lbl">2D Minkowski matrix determinant</span></p>
     </div>
   </div>
-  <p><b>Lean check, all three modules:</b> build exit 0, 4,370 jobs, no sorry, axioms only propext, Classical.choice, Quot.sound. Checker re-ran the build independently and passed it.</p>
-  <p><b>Honest limit:</b> the sphere test proves the origin arithmetic only. It cannot test the quadratic terms, and the symbols are hardcoded, not derived from the metric. That is why the judge verdict is GAP, and why the next test uses spherical coordinates.</p>
+  <p><b>Lean check, sphere test:</b> build exit 0, 4,370 jobs, no sorry, axioms only propext, Classical.choice, Quot.sound. Checker re-ran the build independently and passed it.</p>
+  <p><b>Honest limit:</b> the spherical test proves the symbols are derived from the metric, and the deletion check discriminates. It is still one chart of one surface, coordinate components only. It proves nothing about general manifolds, the Einstein equations, or Kerr.</p>
 </div>
 
 <h2>What the tool does today</h2>
@@ -89,24 +89,30 @@
   <li>Write down a metric with any signature (p, q) on a finite-dimensional space, and check it in Lean.</li>
   <li>Compute curvature, Ricci, and scalar curvature from coordinate components, and check the values in Lean.</li>
   <li>Show Minkowski space is flat: Riemann, Ricci, and scalar all zero, checked in Lean.</li>
-  <li>Show the 2-sphere numbers at one point: Ricci equals the metric, scalar equals 2, checked in Lean.</li>
+  <li>Show the 2-sphere numbers: Ricci equals the metric, scalar equals 2, with the symbols derived from the metric, checked in Lean.</li>
+  <li>State the Einstein vacuum equations in both forms, and prove Schwarzschild Ric = 0 on its regular chart, checked in Lean.</li>
+  <li>Use W^{1,2} on R^n with weak derivatives, norm, and Hilbert structure, checked in Lean.</li>
 </ul>
 
 <h2>What it does not do yet</h2>
 <ul>
-  <li>Derive a connection from a metric on a curved manifold. The sphere symbols are hardcoded.</li>
-  <li>State or check the Einstein equations on curved space.</li>
-  <li>State the Kerr metric, or check Ric = 0 for Kerr.</li>
-  <li>Offer Sobolev spaces, embeddings, or energy estimates. Nothing in Phase 3 exists.</li>
+  <li>Derive a connection from a metric on a general curved manifold. The flat connection is the only one that exists.</li>
+  <li>State or check Ric = 0 for Kerr.</li>
+  <li>Offer Sobolev spaces on manifolds, embeddings, trace, or energy estimates. The first slice and the carrier design exist; the proofs are running.</li>
+  <li>Prove the bridge H^1 = W^{1,2}. It is stated forward-only.</li>
 </ul>
 
-<h2>Running now: the fleet pilot, 4 tracks</h2>
+<h2>Running now: 8 tracks</h2>
 <ul>
-  <li>Track A: spherical-coordinates sphere test, connection derived from the metric.</li>
-  <li>Track B: push the sphere file, land the CI workflow file.</li>
-  <li>Track C: re-judge Phase 1 planning with both hostile reviews, plus the gap file.</li>
-  <li>Track D: state the Kerr metric in Lean and attempt the Ric = 0 check.</li>
+  <li>Kerr Ric = 0, the (t, φ) inverse-block identity first, then metric compatibility, then Ricci.</li>
+  <li>Phase 1 close-out: import check, instances decision, compiled indefinite Levi-Civita example, migration build, portability audit, linter cleanup, uniqueness.</li>
+  <li>Phase 2 API job: inverse metric as a field, chart domain, bundled API, inverse proof.</li>
+  <li>Divergence-free from Bianchi.</li>
+  <li>Phase 5 stability scaffolding: Kerr stability stated in Lean, hypotheses named, gap file.</li>
+  <li>Bridge proof: H^1 = W^{1,2} on the new carrier.</li>
+  <li>Embeddings, trace, Poincare.</li>
+  <li>Weighted spaces and bounded domains.</li>
 </ul>
-<p class="fine">Each track has a $4 hard cap and its own judge verdict. Results arrive as each track lands.</p>
+<p class="fine">Each track has a $4 hard cap and its own judge verdict ($2 for the carrier design, done). Results arrive as each track lands. The completion fleet follows: wave 3 (general Levi-Civita, Sobolev on manifolds, wave energy, Phase 5 energy and Morawetz) launches as its gates clear, then wave 4 (Mathlib merge prep, final audit). Total fleet max $52.</p>
 </body>
 </html>
